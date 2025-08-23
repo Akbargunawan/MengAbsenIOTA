@@ -43,10 +43,7 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::resource('users', UserController::class);
 
 
-// Jika ingin route khusus buat create user
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
 
 Route::get('/master', function () {
     return view('master', ['title' => 'Master']);
