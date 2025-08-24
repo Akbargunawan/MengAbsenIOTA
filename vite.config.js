@@ -8,4 +8,5 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    base: '', // wajib di prod supaya path CSS/JS sesuai
 });
