@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Hitung total user
+        // Hitung total userr
         $totalUsers = User::count();
 
         // Bisa juga hitung total cuti, surat tugas, dsb jika ada model masing-masing
