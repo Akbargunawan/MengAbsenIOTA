@@ -48,7 +48,7 @@
         </div>
 
         {{-- Total Reimbursement --}}
-        <div class="flex flex-col p-4 bg-white rounded-lg shadow">
+        <div class="flex flex-col p-5 bg-white rounded-lg shadow">
             <p class="text-[#E68540] font-bold text-sm mb-2">Total Reimbursement</p>
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
