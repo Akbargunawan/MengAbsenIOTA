@@ -16,6 +16,6 @@ class DashboardController extends Controller
         // Bisa juga hitung total cuti, surat tugas, dsb jika ada model masing-masing
         // $totalCuti = Cuti::count();
 
-        return view('layout.dashboard', compact('totalUsers'));
+        return view('dashboard', compact('totalUsers'));
     }
 }
