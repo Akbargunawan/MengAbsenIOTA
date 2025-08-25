@@ -103,18 +103,88 @@
             </div>
         </div>
 
-        {{-- Master --}}
-        <a href="/master" 
-           class="flex items-center px-3 py-2 rounded-full
-                  {{ request()->is('master*') 
-                      ? 'bg-gray-100 text-black font-semibold -mr-4' 
-                      : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
-            <img src="{{ request()->is('master*') 
-                ? asset('images/LogoSidebar/Folder-active.svg') 
-                : asset('images/LogoSidebar/Folder.svg') }}" 
-                 alt="Master" class="w-5 h-5 mr-3">
-            <span>Master</span>
+      {{-- MASTER --}}
+@php
+    $isJabatanAny       = request()->is('jabatan*');
+    $isJenisIzinAny     = request()->is('jenis-izin*');
+    $isReimbursementAny = request()->is('reimbursement*');
+    $isRoleMasterAny    = request()->is('role*'); 
+    $isSuratTugasAny    = request()->is('surat-tugas*');
+    $isUserAnyMaster    = request()->is('user-master*'); // <-- kasih beda prefix biar gak tabrakan sama user mgmt
+    $isMasterAny        = $isJabatanAny || $isJenisIzinAny || $isReimbursementAny || $isRoleMasterAny || $isSuratTugasAny || $isUserAnyMaster;
+@endphp
+
+<div x-data="{ open: {{ $isMasterAny ? 'true' : 'false' }} }" class="relative">
+    <button @click="open = !open" 
+            class="flex items-center px-3 py-2 w-full rounded-full
+                   {{ $isMasterAny 
+                       ? 'bg-gray-100 text-black font-semibold -mr-4' 
+                       : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+        <img src="{{ $isMasterAny
+                     ? asset('images/LogoSidebar/Folder-active.svg') 
+                     : asset('images/LogoMaster/Master.svg') }}" 
+             alt="Master" class="w-5 h-5 mr-3">
+        <span>Master</span>
+        <svg :class="{'rotate-90': open}" class="ml-auto w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </button>
+
+    {{-- Dropdown --}}
+    <div x-show="open" x-transition
+         class="mt-2 overflow-hidden bg-[#DB6A1A] border border-[#C46217] rounded-2xl">
+
+        {{-- Jabatan --}}
+        <a href="/jabatan"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isJabatanAny ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoMaster/Jabatan.svg') }}" class="w-5 h-5" alt="">
+            Jabatan
         </a>
+
+        {{-- Jenis Izin --}}
+        <a href="/jenis-izin"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isJenisIzinAny ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoMaster/JenisIzin.svg') }}" class="w-5 h-5" alt="">
+            Jenis Izin
+        </a>
+
+        {{-- Reimbursement --}}
+        <a href="/reimbursement"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isReimbursementAny ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoMaster/Reimbursement.svg') }}" class="w-5 h-5" alt="">
+            Reimbursement
+        </a>
+
+        {{-- Role --}}
+        <a href="/role-master"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isRoleMasterAny ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoSidebar/Role.svg') }}" class="w-5 h-5" alt="">
+            Role
+        </a>
+
+        {{-- Surat Tugas --}}
+        <a href="/surat-tugas"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isSuratTugasAny ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoMaster/SuratTugas.svg') }}" class="w-5 h-5" alt="">
+            Surat Tugas
+        </a>
+
+        {{-- User Master --}}
+        <a href="/user-master"
+           class="flex items-center gap-3 px-4 py-2 transition duration-200
+                  {{ $isUserAnyMaster ? 'bg-[#B5692B] text-white font-semibold' : 'text-white hover:bg-[#B5692B] hover:text-white' }}">
+            <img src="{{ asset('images/LogoSidebar/Users.svg') }}" class="w-5 h-5" alt="">
+            User
+        </a>
+    </div>
+</div>
+
+
     </nav>
 </div>
 
